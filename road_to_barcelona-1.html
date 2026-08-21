@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Road to Barcelona</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#f7f4ef;color:#222}
+  .wrap{max-width:1000px;margin:auto;padding:18px}
+  .card{background:white;border-radius:22px;box-shadow:0 5px 22px rgba(0,0,0,.08);overflow:hidden}
+  header{padding:22px 22px 14px;text-align:center}
+  h1{margin:0;font-size:clamp(25px,6vw,42px);letter-spacing:.3px}
+  .sub{margin-top:5px;color:#666}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px 16px}
+  .stat{background:#f1eee8;border-radius:16px;padding:14px;text-align:center}
+  .num{font-size:clamp(24px,7vw,38px);font-weight:800}
+  .label{font-size:13px;color:#666}
+  #map{height:58vh;min-height:390px}
+  .progress{padding:16px 18px 20px}
+  .bar{height:15px;background:#e4e0d8;border-radius:99px;overflow:hidden}
+  .fill{height:100%;width:0%;background:#222;border-radius:99px;transition:width .4s}
+  .foot{display:flex;justify-content:space-between;font-size:13px;color:#666;margin-top:8px}
+  details{margin:14px 0 0}
+  summary{cursor:pointer;font-weight:700}
+  .admin{padding:14px;background:#faf8f4;border-radius:14px;margin-top:10px}
+  input{width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;font-size:18px;margin:8px 0}
+  button{padding:11px 16px;border:0;border-radius:10px;background:#222;color:#fff;font-weight:700}
+  .hint{font-size:12px;color:#777;margin-top:8px}
+  .bus-icon{background:transparent;border:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <header>
+      <h1>🚌 Road to Barcelona</h1>
+      <div class="sub">Livingston → Barcelona · 2,200 km</div>
+    </header>
+    <div class="stats">
+      <div class="stat"><div class="num" id="raised">£0</div><div class="label">RAISED</div></div>
+      <div class="stat"><div class="num" id="km">0 km</div><div class="label">COMPLETED</div></div>
+    </div>
+    <div id="map"></div>
+    <div class="progress">
+      <div class="bar"><div class="fill" id="fill"></div></div>
+      <div class="foot"><span id="percent">0%</span><span id="remaining">2,200 km to Barcelona</span></div>
+    </div>
+  </div>
+
+  <details>
+    <summary>Admin: update the fundraising total</summary>
+    <div class="admin">
+      <label for="amount">Current amount raised (£)</label>
+      <input id="amount" type="number" min="0" step="1" value="0">
+      <button onclick="updateAmount()">Update map</button>
+      <div class="hint">For this prototype, the value is saved on this device. Later we can connect this field to a shared Google Sheet so everyone sees the same live amount.</div>
+    </div>
+  </details>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const points = [{"name": "Livingston", "lat": 55.902, "lng": -3.5226, "km": 0}, {"name": "Carlisle", "lat": 54.8925, "lng": -2.9329, "km": 139}, {"name": "Manchester", "lat": 53.4808, "lng": -2.2426, "km": 331}, {"name": "Birmingham", "lat": 52.4862, "lng": -1.8904, "km": 463}, {"name": "London", "lat": 51.5074, "lng": -0.1278, "km": 654}, {"name": "Calais", "lat": 50.9513, "lng": 1.8587, "km": 832}, {"name": "Paris", "lat": 48.8566, "lng": 2.3522, "km": 1109}, {"name": "Lyon", "lat": 45.764, "lng": 4.8357, "km": 1569}, {"name": "Montpellier", "lat": 43.6119, "lng": 3.8772, "km": 1863}, {"name": "Perpignan", "lat": 42.6887, "lng": 2.8948, "km": 2016}, {"name": "Barcelona", "lat": 41.3874, "lng": 2.1686, "km": 2200}];
+const TOTAL = 2200;
+let amount = Number(localStorage.getItem('roadBarcelonaAmount') || 0);
+
+const map = L.map('map', {scrollWheelZoom:false});
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution:'&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+const latlngs = points.map(p => [p.lat,p.lng]);
+const route = L.polyline(latlngs, {weight:5, opacity:.75}).addTo(map);
+map.fitBounds(route.getBounds(), {padding:[20,20]});
+
+points.forEach(p => {
+  L.marker([p.lat,p.lng]).addTo(map).bindPopup('<b>'+p.name+'</b><br>'+p.km.toLocaleString()+' km');
+});
+
+const bus = L.marker(latlngs[0], {
+  icon:L.divIcon({className:'bus-icon',html:'<div style="font-size:30px">🚌</div>',iconSize:[35,35],iconAnchor:[17,17]})
+}).addTo(map);
+
+function positionAtKm(target) {
+  if (target <= 0) return latlngs[0];
+  if (target >= TOTAL) return latlngs[latlngs.length-1];
+  for (let i=1;i<points.length;i++) {
+    if (target <= points[i].km) {
+      const a=points[i-1], b=points[i];
+      const t=(target-a.km)/(b.km-a.km);
+      return [a.lat+(b.lat-a.lat)*t, a.lng+(b.lng-a.lng)*t];
+    }
+  }
+  return latlngs[latlngs.length-1];
+}
+
+function updateUI() {
+  amount=Math.max(0,Math.min(TOTAL,Number(amount)||0));
+  const pct=(amount/TOTAL)*100;
+  document.getElementById('raised').textContent='£'+Math.round(amount).toLocaleString();
+  document.getElementById('km').textContent=Math.round(amount).toLocaleString()+' km';
+  document.getElementById('fill').style.width=pct+'%';
+  document.getElementById('percent').textContent=pct.toFixed(1)+'%';
+  document.getElementById('remaining').textContent=amount>=TOTAL?'🎉 Barcelona reached!':Math.round(TOTAL-amount).toLocaleString()+' km to Barcelona';
+  bus.setLatLng(positionAtKm(amount));
+}
+function updateAmount(){
+  amount=Number(document.getElementById('amount').value)||0;
+  localStorage.setItem('roadBarcelonaAmount', amount);
+  updateUI();
+}
+document.getElementById('amount').value=amount;
+updateUI();
+</script>
+</body>
+</html>
