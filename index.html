@@ -439,26 +439,26 @@ points.forEach(function(p) {
 
 
 /* BUS */
-  
+
+
 const bus = L.marker(latlngs[0], {
   icon: L.divIcon({
     className: 'bus-icon',
     html: `
       <div style="
         position: relative;
-        width: 42px;
-        height: 28px;
+        width: 38px;
+        height: 24px;
         background: #06152f;
-        border: 3px solid #d62828;
-        border-radius: 7px 7px 5px 5px;
-        box-sizing: border-box;
+        border: 2px solid #ffffff;
+        border-radius: 6px;
         box-shadow: 0 2px 5px rgba(0,0,0,.35);
       ">
         <div style="
           position: absolute;
           left: 5px;
-          top: 5px;
-          width: 10px;
+          top: 4px;
+          width: 24px;
           height: 8px;
           background: #ffffff;
           border-radius: 2px;
@@ -466,20 +466,30 @@ const bus = L.marker(latlngs[0], {
 
         <div style="
           position: absolute;
-          left: 18px;
-          top: 5px;
-          width: 10px;
-          height: 8px;
-          background: #ffffff;
-          border-radius: 2px;
+          left: 5px;
+          top: 15px;
+          width: 7px;
+          height: 3px;
+          background: #d62828;
+          border-radius: 1px;
+        "></div>
+
+        <div style="
+          position: absolute;
+          right: 5px;
+          top: 15px;
+          width: 7px;
+          height: 3px;
+          background: #d62828;
+          border-radius: 1px;
         "></div>
 
         <div style="
           position: absolute;
           left: 6px;
           bottom: -5px;
-          width: 8px;
-          height: 8px;
+          width: 7px;
+          height: 7px;
           background: #06152f;
           border: 2px solid #ffffff;
           border-radius: 50%;
@@ -489,16 +499,16 @@ const bus = L.marker(latlngs[0], {
           position: absolute;
           right: 6px;
           bottom: -5px;
-          width: 8px;
-          height: 8px;
+          width: 7px;
+          height: 7px;
           background: #06152f;
           border: 2px solid #ffffff;
           border-radius: 50%;
         "></div>
       </div>
     `,
-    iconSize: [42, 28],
-    iconAnchor: [21, 14]
+    iconSize: [38, 24],
+    iconAnchor: [19, 12]
   })
 }).addTo(map);
 
