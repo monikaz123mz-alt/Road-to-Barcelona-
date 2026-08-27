@@ -118,9 +118,18 @@ const clubIcon = L.divIcon({
 });
 
 points.forEach(p => {
-  L.marker([p.lat,p.lng], {icon: clubIcon})
+  const icon = L.divIcon({
+    className: 'club-marker',
+    html: '<div class="marker-pin"><span>⚽</span></div>',
+    iconSize: [34, 42],
+    iconAnchor: [17, 42],
+    popupAnchor: [0, -40]
+  });
+
+  L.marker([p.lat, p.lng], {icon: icon})
     .addTo(map)
     .bindPopup('<b>'+p.name+'</b><br>'+p.km.toLocaleString()+' km');
+});
 });
  
 
