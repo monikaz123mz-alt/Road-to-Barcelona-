@@ -440,23 +440,14 @@ points.forEach(function(p) {
 
 /* BUS */
 
-const bus = L.marker(
-  latlngs[0],
-  {
-    icon: L.divIcon({
-
-      className: "bus-icon",
-
-      html:
-        '<div class="bus-emoji">🚌</div>',
-
-      iconSize: [35, 35],
-
-      iconAnchor: [17, 17]
-
-    })
-  }
-).addTo(map);
+const bus = L.marker(latlngs[0], {
+  icon:L.divIcon({
+    className:'bus-icon',
+    html:'<div style="font-size:30px; filter:saturate(2)">🚌</div>',
+    iconSize:[35,35],
+    iconAnchor:[17,17]
+  })
+}).addTo(map);
 
 
 /* BUS POSITION */
