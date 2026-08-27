@@ -439,72 +439,68 @@ points.forEach(function(p) {
 
 
 /* BUS */
-
-
+  
 const bus = L.marker(latlngs[0], {
   icon: L.divIcon({
     className: 'bus-icon',
     html: `
       <div style="
-        width: 38px;
-        height: 24px;
-        background: #d62828;
-        border: 3px solid #06152f;
-        border-radius: 6px 6px 4px 4px;
         position: relative;
+        width: 42px;
+        height: 28px;
+        background: #06152f;
+        border: 3px solid #d62828;
+        border-radius: 7px 7px 5px 5px;
         box-sizing: border-box;
         box-shadow: 0 2px 5px rgba(0,0,0,.35);
       ">
         <div style="
-          position:absolute;
-          left:5px;
-          top:4px;
-          width:9px;
-          height:7px;
-          background:#dff4ff;
-          border-radius:2px;
+          position: absolute;
+          left: 5px;
+          top: 5px;
+          width: 10px;
+          height: 8px;
+          background: #ffffff;
+          border-radius: 2px;
         "></div>
 
         <div style="
-          position:absolute;
-          left:16px;
-          top:4px;
-          width:9px;
-          height:7px;
-          background:#dff4ff;
-          border-radius:2px;
+          position: absolute;
+          left: 18px;
+          top: 5px;
+          width: 10px;
+          height: 8px;
+          background: #ffffff;
+          border-radius: 2px;
         "></div>
 
         <div style="
-          position:absolute;
-          right:-5px;
-          bottom:1px;
-          width:7px;
-          height:7px;
-          background:#111;
-          border-radius:50%;
-          border:2px solid white;
-          box-sizing:border-box;
+          position: absolute;
+          left: 6px;
+          bottom: -5px;
+          width: 8px;
+          height: 8px;
+          background: #06152f;
+          border: 2px solid #ffffff;
+          border-radius: 50%;
         "></div>
 
         <div style="
-          position:absolute;
-          left:4px;
-          bottom:1px;
-          width:7px;
-          height:7px;
-          background:#111;
-          border-radius:50%;
-          border:2px solid white;
-          box-sizing:border-box;
+          position: absolute;
+          right: 6px;
+          bottom: -5px;
+          width: 8px;
+          height: 8px;
+          background: #06152f;
+          border: 2px solid #ffffff;
+          border-radius: 50%;
         "></div>
       </div>
     `,
-    iconSize: [38, 24],
-    iconAnchor: [19, 12]
+    iconSize: [42, 28],
+    iconAnchor: [21, 14]
   })
 }).addTo(map);
-
 
 /* BUS POSITION */
 
