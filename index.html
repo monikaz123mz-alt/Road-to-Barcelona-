@@ -96,10 +96,19 @@ const route = L.polyline(latlngs, {
   color: '#F5B400'
 }).addTo(map);
 map.fitBounds(route.getBounds(), {padding:[20,20]});
-points.forEach(p => {
-  L.marker([p.lat,p.lng]).addTo(map).bindPopup('<b>'+p.name+'</b><br>'+p.km.toLocaleString()+' km');
+const clubIcon = L.divIcon({
+  className: 'club-marker',
+  html: '<div class="marker-pin"><span>⚽</span></div>',
+  iconSize: [42, 42],
+  iconAnchor: [21, 42],
+  popupAnchor: [0, -40]
 });
 
+points.forEach(p => {
+  L.marker([p.lat,p.lng], {icon: clubIcon})
+    .addTo(map)
+    .bindPopup('<b>'+p.name+'</b><br>'+p.km.toLocaleString()+' km');
+});
  
 
 const bus = L.marker(latlngs[0], {
