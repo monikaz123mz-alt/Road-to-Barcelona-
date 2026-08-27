@@ -90,7 +90,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 const latlngs = points.map(p => [p.lat,p.lng]);
-const route = L.polyline(latlngs, {weight:5, opacity:.75}).addTo(map);
+const route = L.polyline(latlngs, {
+  weight: 6,
+  opacity: 0.95,
+  color: '#F5B400'
+}).addTo(map);
 map.fitBounds(route.getBounds(), {padding:[20,20]});
 points.forEach(p => {
   L.marker([p.lat,p.lng]).addTo(map).bindPopup('<b>'+p.name+'</b><br>'+p.km.toLocaleString()+' km');
