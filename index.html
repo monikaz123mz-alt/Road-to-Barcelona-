@@ -99,6 +99,7 @@ map.fitBounds(route.getBounds(), {padding:[20,20]});
 points.forEach(p => {
   L.marker([p.lat,p.lng]).addTo(map).bindPopup('<b>'+p.name+'</b><br>'+p.km.toLocaleString()+' km');
 });
+ 
 
 const bus = L.marker(latlngs[0], {
   icon:L.divIcon({className:'bus-icon',html:'<div style="font-size:30px">🚌</div>',iconSize:[35,35],iconAnchor:[17,17]})
