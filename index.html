@@ -95,22 +95,24 @@ h1 {
 }
 
 .intro {
-    margin-top: 10px;
-    margin-left: 28px;
-    margin-right: 28px;
+    margin: 10px 28px 0 !important;
+    padding: 0 !important;
 }
 
 .intro-text {
-    margin: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     font-size: 18px;
     line-height: 1.35;
+}
+.intro-text p:first-child {
+    font-weight: 800;
+}
+
+.intro-text p:not(:first-child) {
     font-weight: 400;
 }
 
-.intro-text:first-child {
-    font-weight: 800;
-    margin-bottom: 40px;
-}
     
  
 #map {
