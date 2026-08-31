@@ -575,7 +575,7 @@ const points = [
 
 ];
 
-const TOTAL = 2200;
+const TOTAL = 20000;
 
 let amount = Number(
   localStorage.getItem("roadBarcelonaAmount") || 0
@@ -778,9 +778,11 @@ function updateUI() {
         " km to Barcelona";
 
 
-  bus.setLatLng(
-    positionAtKm(amount)
-  );
+  const travelledKm = (amount / TOTAL) * 2200;
+
+bus.setLatLng(
+    positionAtKm(travelledKm)
+);
 
 }
 
