@@ -778,7 +778,7 @@ function updateUI() {
         " km to Barcelona";
 
 
-  const travelledKm = (amount / TOTAL) * 2200;
+  const travelledKm = (amount / TOTAL) * 20000;
 
 bus.setLatLng(
     positionAtKm(travelledKm)
@@ -791,7 +791,7 @@ bus.setLatLng(
 
 function updateAmount() {
 
-  amount =
+  amount = 10000
     Number(
       document.getElementById(
         "amount"
