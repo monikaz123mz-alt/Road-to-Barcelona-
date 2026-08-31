@@ -739,7 +739,8 @@ function updateUI() {
 
   const pct =
     (amount / TOTAL) * 100;
-
+const travelledKm = (amount / TOTAL) * 2200;
+const remainingKm = 2200 - travelledKm;
 
   document.getElementById(
     "raised"
@@ -769,20 +770,16 @@ function updateUI() {
 
   document.getElementById(
     "remaining"
-  ).textContent =
+).textContent =
     amount >= TOTAL
-      ? "🎉 Barcelona reached!"
-      : Math.round(
-          TOTAL - amount
-        ).toLocaleString() +
-        " km to Barcelona";
-
-
-  const travelledKm = (amount / TOTAL) * 20000;
+        ? "🎉 Barcelona reached!"
+        : Math.round(remainingKm).toLocaleString() +
+          " km to Barcelona";
 
 bus.setLatLng(
     positionAtKm(travelledKm)
 );
+
 
 }
 
@@ -791,7 +788,7 @@ bus.setLatLng(
 
 function updateAmount() {
 
-  amount = 10000
+  amount = 
     Number(
       document.getElementById(
         "amount"
