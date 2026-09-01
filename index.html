@@ -909,50 +909,10 @@ function positionAtKm(target) {
     ];
 }
 
-  if (target >= 2200) {
+  
+  
 
-    const last =
-      points[points.length - 1];
-
-    return [
-      last.lat,
-      last.lng
-    ];
-
-  }
-
-  for (
-    let i = 1;
-    i < points.length;
-    i++
-  ) {
-
-    if (target <= points[i].km) {
-
-      const a =
-        points[i - 1];
-
-      const b =
-        points[i];
-
-      const t =
-        (target - a.km) /
-        (b.km - a.km);
-
-      return [
-
-        a.lat +
-        (b.lat - a.lat) * t,
-
-        a.lng +
-        (b.lng - a.lng) * t
-
-      ];
-
-    }
-
-  }
-
+    
   const last =
     points[points.length - 1];
 
@@ -962,7 +922,15 @@ function positionAtKm(target) {
   ];
 
 }
-  
+  function positionAtKm(target) {
+    if (target <= 0) {
+        return [
+            points[0].lat,
+            points[0].lng
+        ];
+    }
+
+    
 
 /* UPDATE SCREEN */
 
@@ -986,7 +954,7 @@ const remainingKm = 2200 - travelledKm;
     "raised"
   ).textContent =
     "£" +
-    Math.round(travelledKm)
+    Math.round(amount).toLocaleString()
 
 
   document.getElementById(
