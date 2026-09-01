@@ -522,6 +522,18 @@ button {
 
 <script>
 
+lineJoin: "round"
+  }
+).addTo(map);
+
+
+map.fitBounds(
+  route.getBounds(),
+  {
+    padding: [25, 25]
+  }
+);
+
 const points = [
 
   {
@@ -532,10 +544,24 @@ const points = [
   },
 
   {
+    name: "Carlisle",
+    lat: 54.8925,
+    lng: -2.9329,
+    km: 139
+  },
+
+  {
     name: "Manchester",
     lat: 53.4808,
     lng: -2.2426,
     km: 331
+  },
+
+  {
+    name: "Birmingham",
+    lat: 52.4862,
+    lng: -1.8904,
+    km: 463
   },
 
   {
@@ -560,10 +586,59 @@ const points = [
   },
 
   {
-    name: "Lyon",
-    lat: 45.764,
-    lng: 4.8357,
-    km: 1569
+    name: "Orléans",
+    lat: 47.903,
+    lng: 1.9093,
+    km: 1195
+  },
+
+  {
+    name: "Bourges",
+    lat: 47.081,
+    lng: 2.3988,
+    km: 1270
+  },
+
+  {
+    name: "Montluçon",
+    lat: 46.34,
+    lng: 2.603,
+    km: 1345
+  },
+
+  {
+    name: "Clermont-Ferrand",
+    lat: 45.7772,
+    lng: 3.087,
+    km: 1415
+  },
+
+  {
+    name: "Montpellier",
+    lat: 43.6119,
+    lng: 3.8772,
+    km: 1770
+  },
+
+  {
+    name: "Carcassonne",
+    lat: 43.213,
+    lng: 2.3491,
+    km: 1860
+  },
+
+  {
+    name: "Perpignan",
+    lat: 42.6887,
+    lng: 2.8948,
+    km: 2010
+  },
+
+  {
+    name: "Girona",
+    lat: 41.9794,
+    lng: 2.8214,
+    km: 2110
   },
 
   {
@@ -575,24 +650,12 @@ const points = [
 
 ];
 
-const TOTAL = 20000;
-
-let amount = 0;
-
-fetch("amount.json?v=" + Date.now())
-    .then(response => response.json())
-    .then(data => {
-        amount = Number(data.amount) || 0;
-        updateUI();
-    });
-
 
 /* MAP */
 
 const map = L.map("map", {
   scrollWheelZoom: false
 });
-
 
 L.tileLayer(
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -604,13 +667,140 @@ L.tileLayer(
 
 /* ROUTE */
 
-const latlngs = points.map(function(p) {
-  return [p.lat, p.lng];
-});
+const routePoints = [
+
+  [55.902, -3.5226],
+
+  [55.75, -3.35],
+  [55.60, -3.15],
+  [55.43, -3.02],
+  [55.25, -2.98],
+  [55.05, -2.95],
+
+  [54.8925, -2.9329],
+
+  [54.75, -2.80],
+  [54.60, -2.65],
+  [54.45, -2.50],
+  [54.30, -2.35],
+  [54.10, -2.25],
+  [53.90, -2.20],
+  [53.70, -2.18],
+
+  [53.4808, -2.2426],
+
+  [53.30, -2.18],
+  [53.15, -2.10],
+  [53.00, -2.00],
+  [52.85, -1.95],
+  [52.70, -1.92],
+
+  [52.4862, -1.8904],
+
+  [52.35, -1.85],
+  [52.20, -1.70],
+  [52.05, -1.55],
+  [51.90, -1.40],
+  [51.75, -1.25],
+  [51.62, -1.00],
+  [51.5074, -0.1278],
+
+  [51.40, 0.10],
+  [51.30, 0.40],
+  [51.20, 0.70],
+  [51.10, 1.00],
+  [51.00, 1.40],
+  [50.90, 1.70],
+
+  [50.9513, 1.8587],
+
+  [50.80, 1.90],
+  [50.60, 2.00],
+  [50.40, 2.10],
+  [50.20, 2.25],
+  [50.00, 2.40],
+  [49.80, 2.50],
+  [49.60, 2.45],
+  [49.40, 2.40],
+  [49.20, 2.35],
+  [49.00, 2.30],
+
+  [48.8566, 2.3522],
+
+  [48.70, 2.25],
+  [48.50, 2.15],
+  [48.30, 2.05],
+  [48.10, 1.95],
+
+  [47.903, 1.9093],
+
+  [47.70, 2.00],
+  [47.50, 2.10],
+  [47.30, 2.20],
+
+  [47.081, 2.3988],
+
+  [46.90, 2.45],
+  [46.70, 2.52],
+  [46.50, 2.58],
+
+  [46.34, 2.603],
+
+  [46.20, 2.65],
+  [46.05, 2.75],
+  [45.90, 2.90],
+
+  [45.7772, 3.087],
+
+  [45.60, 3.15],
+  [45.40, 3.22],
+  [45.20, 3.28],
+  [45.00, 3.30],
+  [44.80, 3.35],
+  [44.60, 3.45],
+  [44.40, 3.55],
+  [44.20, 3.65],
+  [44.00, 3.75],
+  [43.80, 3.82],
+
+  [43.6119, 3.8772],
+
+  [43.50, 3.75],
+  [43.40, 3.55],
+  [43.30, 3.30],
+
+  [43.213, 2.3491],
+
+  [43.10, 2.50],
+  [43.00, 2.65],
+  [42.90, 2.75],
+  [42.80, 2.85],
+
+  [42.6887, 2.8948],
+
+  [42.60, 2.90],
+  [42.50, 2.85],
+  [42.40, 2.80],
+  [42.30, 2.80],
+  [42.20, 2.82],
+  [42.10, 2.82],
+
+  [41.9794, 2.8214],
+
+  [41.90, 2.75],
+  [41.80, 2.65],
+  [41.70, 2.55],
+  [41.60, 2.45],
+  [41.50, 2.35],
+  [41.42, 2.25],
+
+  [41.3874, 2.1686]
+
+];
 
 
 const route = L.polyline(
-  latlngs,
+  routePoints,
   {
     weight: 6,
     opacity: 0.95,
@@ -621,6 +811,8 @@ const route = L.polyline(
 ).addTo(map);
 
 
+/* FIT MAP */
+
 map.fitBounds(
   route.getBounds(),
   {
@@ -629,39 +821,34 @@ map.fitBounds(
 );
 
 
-/* CITY MARKERS */
+/* PINS */
 
-points.forEach(function(p) {
+points.forEach(function(point) {
 
-  const footballIcon = L.divIcon({
+  const icon = L.divIcon({
 
     className: "club-marker",
 
-    html:
-      '<div class="club-pin">' +
-      '<span>⚽</span>' +
-      '</div>',
+    html: '<div class="club-pin"></div>',
 
-    iconSize: [28, 28],
+    iconSize: [16, 16],
 
-iconAnchor: [14, 14],
+    iconAnchor: [8, 8]
 
-popupAnchor: [0, -18]
   });
 
-
   L.marker(
-    [p.lat, p.lng],
+    [point.lat, point.lng],
     {
-      icon: footballIcon
+      icon: icon
     }
   )
   .addTo(map)
   .bindPopup(
     "<b>" +
-    p.name +
+    point.name +
     "</b><br>" +
-    p.km.toLocaleString() +
+    point.km.toLocaleString() +
     " km"
   );
 
@@ -670,27 +857,48 @@ popupAnchor: [0, -18]
 
 /* BUS */
 
-const bus = L.marker(latlngs[0], {
-  icon: L.divIcon({
-    className: 'bus-icon',
-    html: '<div style="font-size:34px; line-height:34px;">🚌</div>',
-    iconSize: [34, 34],
-    iconAnchor: [17, 17]
-  })
-}).addTo(map);
+const bus = L.marker(
+  routePoints[0],
+  {
+    icon: L.divIcon({
+
+      className: "bus-icon",
+
+      html: '<div style="font-size:30px">🚌</div>',
+
+      iconSize: [35, 35],
+
+      iconAnchor: [17, 17]
+
+    })
+  }
+).addTo(map);
+
 
 /* BUS POSITION */
 
 function positionAtKm(target) {
 
   if (target <= 0) {
-    return latlngs[0];
+
+    return [
+      points[0].lat,
+      points[0].lng
+    ];
+
   }
 
-  if (target >= TOTAL) {
-    return latlngs[latlngs.length - 1];
-  }
+  if (target >= 2200) {
 
+    const last =
+      points[points.length - 1];
+
+    return [
+      last.lat,
+      last.lng
+    ];
+
+  }
 
   for (
     let i = 1;
@@ -700,14 +908,15 @@ function positionAtKm(target) {
 
     if (target <= points[i].km) {
 
-      const a = points[i - 1];
+      const a =
+        points[i - 1];
 
-      const b = points[i];
+      const b =
+        points[i];
 
       const t =
         (target - a.km) /
         (b.km - a.km);
-
 
       return [
 
@@ -723,11 +932,16 @@ function positionAtKm(target) {
 
   }
 
+  const last =
+    points[points.length - 1];
 
-  return latlngs[latlngs.length - 1];
+  return [
+    last.lat,
+    last.lng
+  ];
 
 }
-
+  
 
 /* UPDATE SCREEN */
 
