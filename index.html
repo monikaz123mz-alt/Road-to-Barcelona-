@@ -579,13 +579,12 @@ const TOTAL = 20000;
 
 let amount = 0;
 
-fetch("amount.json")
-  .then(response => response.json())
-  .then(data => {
-    amount = Number(data.amount) || 0;
-    updateUI();
-  });
-
+fetch("amount.json?v=" + Date.now())
+    .then(response => response.json())
+    .then(data => {
+        amount = Number(data.amount) || 0;
+        updateUI();
+    });
 
 
 /* MAP */
