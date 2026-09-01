@@ -813,20 +813,44 @@ map.fitBounds(
 
 /* PINS */
 
+const visibleMarkers = [
+    "Livingston",
+    "Manchester",
+    "Birmingham",
+    "London",
+    "Calais",
+    "Paris",
+    "Montpellier",
+    "Perpignan",
+    "Barcelona"
+];
+
 points.forEach(function(point) {
 
-  const icon = L.divIcon({
+    if (!visibleMarkers.includes(point.name)) {
+        return;
+    }
 
-    className: "club-marker",
+    const icon = L.divIcon({
+        className: "club-marker",
+        html: '<div class="club-pin"></div>',
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+    });
 
-    html: '<div class="club-pin"></div>',
-
-    iconSize: [16, 16],
-
-    iconAnchor: [8, 8]
-
-  });
-
+    L.marker(
+        [point.lat, point.lng],
+        { icon: icon }
+    )
+    .addTo(map)
+    .bindPopup(
+        "<b>" +
+        point.name +
+        "</b><br>" +
+        point.km.toLocaleString() +
+        " km"
+    );
+});
   L.marker(
     [point.lat, point.lng],
     {
