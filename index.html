@@ -998,99 +998,60 @@ const bus =
 /* =========================
    BUS POSITION
 ========================= */
+const routeDistances = [0];
 
-function positionAtKm(
-  target
-) {
+for (let i = 1; i < routePoints.length; i++) {
+  const a = L.latLng(
+    routePoints[i - 1][0],
+    routePoints[i - 1][1]
+  );
 
-  if (
-    target <= 0
-  ) {
+  const b = L.latLng(
+    routePoints[i][0],
+    routePoints[i][1]
+  );
 
-    return [
-      points[0].lat,
-      points[0].lng
-    ];
+  routeDistances.push(
+    routeDistances[i - 1] + a.distanceTo(b)
+  );
+}
 
-  }
+const totalRouteDistance =
+  routeDistances[routeDistances.length - 1];
 
+function positionAtKm(targetKm) {
 
-  if (
-    target >= TOTAL_KM
-  ) {
+  const targetMeters =
+    (Math.max(0, Math.min(2200, targetKm)) / 2200) *
+    totalRouteDistance;
 
-    const last =
-      points[
-        points.length - 1
-      ];
+  for (let i = 1; i < routePoints.length; i++) {
 
-    return [
-      last.lat,
-      last.lng
-    ];
+    if (targetMeters <= routeDistances[i]) {
 
-  }
+      const segmentStart =
+        routeDistances[i - 1];
 
-
-  for (
-    let i = 1;
-    i < points.length;
-    i++
-  ) {
-
-    if (
-      target <= points[i].km
-    ) {
-
-      const a =
-        points[i - 1];
-
-      const b =
-        points[i];
-
+      const segmentEnd =
+        routeDistances[i];
 
       const t =
-        (
-          target - a.km
-        ) /
-        (
-          b.km - a.km
-        );
+        (targetMeters - segmentStart) /
+        (segmentEnd - segmentStart);
 
+      const a = routePoints[i - 1];
+      const b = routePoints[i];
 
       return [
-
-        a.lat +
-        (
-          b.lat -
-          a.lat
-        ) * t,
-
-        a.lng +
-        (
-          b.lng -
-          a.lng
-        ) * t
-
+        a[0] + (b[0] - a[0]) * t,
+        a[1] + (b[1] - a[1]) * t
       ];
-
     }
-
   }
 
-
-  const last =
-    points[
-      points.length - 1
-    ];
-
-
-  return [
-    last.lat,
-    last.lng
-  ];
-
+  return routePoints[routePoints.length - 1];
 }
+
 
 
 /* =========================
