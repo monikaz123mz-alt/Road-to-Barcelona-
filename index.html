@@ -1,38 +1,23 @@
-  <!doctype html>
+<!doctype html>
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1"
+>
 
 <title>Road to Barcelona</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
+/>
+
 <style>
-  .why-section {
-  padding-left: 24px;
-  padding-right: 24px;
-  box-sizing: border-box;
-  }
-
-.donate-button {
-  display: block;
-  width: calc(100% - 56px);
-  max-width: 520px;
-  margin: 28px auto 28px;
-  padding: 16px 24px;
-  background: #f5b800;
-  color: #111;
-  text-decoration: none;
-  font-weight: 800;
-  font-size: 18px;
-  border-radius: 999px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,.12);
-}
-
-.donate-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0,0,0,.18);
-}
 
 * {
   box-sizing: border-box;
@@ -40,101 +25,131 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; że
-    background: #f5f5f3;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
   color: #111111;
 }
 
-.wrap {
-  max-width: 1000px;
-  margin: auto;
-  padding: 18px;
+.page {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.card {
-  background: white;
-  border-radius: 22px;
-  box-shadow: 0 5px 22px rgba(0,0,0,.08);
-  overflow: hidden;
-}
+/* HERO */
 
-header {
-  padding: 22px 22px 14px;
+.hero {
+  margin: 24px 16px 0;
+  padding: 28px 18px 26px;
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.08);
   text-align: center;
 }
 
-h1 {
-  margin: 0;
-  font-size: clamp(25px, 6vw, 42px);
-  letter-spacing: .3px;
+.hero-title {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.1;
 }
 
-.sub {
-  margin-top: 5px;
-  color: #666;
-  font-size: 18px;
+.hero-subtitle {
+  margin-top: 12px;
+  font-size: 23px;
+  color: #666666;
 }
+
+/* STATS */
 
 .stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 0 16px 16px;
+  display: flex;
+  gap: 16px;
+  margin-top: 26px;
 }
 
 .stat {
-    background: #f2b705;
-  border-radius: 16px;
-  padding: 14px;
-  text-align: center;
+  flex: 1;
+  background: #f5b800;
+  border-radius: 25px;
+  padding: 20px 10px;
 }
 
-.num {
-  font-size: clamp(24px, 7vw, 38px);
+.stat-value {
+  font-size: 42px;
   font-weight: 800;
+  line-height: 1;
 }
 
-.label {
-  font-size: 13px;
+.stat-label {
+  margin-top: 8px;
+  font-size: 16px;
   color: #555555;
+  font-weight: 500;
 }
+
+/* INTRO */
 
 .intro {
-    margin: 10px 28px 0 !important;
-    padding: 0 !important;
+  margin: 56px 24px 0;
 }
 
-.intro-text {
-    margin: 0 !important;
-    padding: 0 !important;
-    font-size: 20px;
-    line-height: 1.4;
-}
-.intro-text p:first-child {
-    font-weight: 800;
+.intro-title {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.15;
 }
 
-.intro-text p:not(:first-child) {
-    font-weight: 400;
+.intro p {
+  font-size: 20px;
+  line-height: 1.45;
 }
 
-    .intro-title {
-    font-size: 22px;
-    font-weight: 800;
-    }
- 
+/* MAP */
+
 #map {
   height: 600px !important;
   width: calc(100% - 32px) !important;
   margin: 28px 16px 0 !important;
   display: block !important;
-  background: #ddd;
+  background: #dddddd;
   border-radius: 18px;
   overflow: hidden;
 }
 
+/* DONATE */
+
+.donate-section {
+  margin: 30px 24px 0;
+  text-align: center;
+}
+
+.donate-title {
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.donate-section p {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.donate-button {
+  display: block;
+  width: calc(100% - 32px);
+  max-width: 520px;
+  margin: 24px auto;
+  padding: 17px 24px;
+  background: #f5b800;
+  color: #111111;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 800;
+  border-radius: 14px;
+}
+
+/* PROGRESS */
+
 .progress {
-  padding: 16px 28px 20px;
+  padding: 20px 28px 30px;
 }
 
 .bar {
@@ -147,102 +162,72 @@ h1 {
 .fill {
   height: 100%;
   width: 0%;
-  background: #f5b400;
+  background: #f5b800;
   border-radius: 99px;
-  transition: width .4s;
+  transition: width 0.5s ease;
 }
 
-.foot {
+.progress-info {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
-  color: #666;
-  margin-top: 8px;
+  gap: 15px;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #555555;
 }
 
-details {
-    display: none;
+/* WHY */
+
+.why-section {
+  padding: 40px 24px 10px;
 }
 
-summary {
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.admin {
-    display: none;
-}
-input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 18px;
-  margin: 8px 0;
-}
-
-button {
-  padding: 11px 16px;
-  border: 0;
-  border-radius: 10px;
-  background: #111111;
-  color: #fff;
-  font-weight: 700;
-}
-
-.hint {
-  font-size: 12px;
-  color: #777;
-  margin-top: 8px;
-}
-
-/* SMALL FOOTBALL MARKERS */
-
-.club-marker {
-  background: transparent;
-  border: none;
-}
-
-.club-pin {
-  width: 22px;
-  height: 22px;
-  background: #111111;
-  border: 3px solid #f5b400;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,.3);
-}
-
-.club-pin span {
-  display: none;
-}
-
-  .events-section {
-  padding: 32px 24px;
-  box-sizing: border-box;
-}
-
-.events-section h2 {
-  font-size: 32px;
-  margin: 0 0 12px;
+.why-title {
+  font-size: 30px;
   font-weight: 800;
+  line-height: 1.15;
 }
 
-.events-intro {
+.why-section p {
   font-size: 18px;
-  line-height: 1.45;
-  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+/* TEAM */
+
+.team-section {
+  padding: 40px 24px;
+}
+
+.section-title {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 22px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.team-grid img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+/* EVENTS */
+
+.events-section {
+  padding: 40px 24px 60px;
 }
 
 .event-card {
-  background: #fff;
-  border-radius: 18px;
+  background: #f7f7f7;
+  border-radius: 20px;
   overflow: hidden;
-  margin-bottom: 24px;
-  border: 1px solid #eee;
 }
 
 .event-card img {
@@ -251,188 +236,226 @@ button {
 }
 
 .event-content {
-  padding: 20px 24px 24px;
-  background: #fff;
+  padding: 20px;
 }
 
-.event-content h3 {
-  font-size: 24px;
-  margin: 0 0 12px;
+.event-title {
+  font-size: 23px;
   font-weight: 800;
-  line-height: 1.2;
 }
 
 .event-content p {
-  font-size: 18px;
-  line-height: 1.45;
-  margin: 0;
-}
-.events-coming {
-  margin-top: 24px;
-  font-weight: 700;
   font-size: 17px;
+  line-height: 1.5;
 }
 
-/* BUS */
+/* FOOTER */
 
-.bus-icon {
-  background: transparent;
-  border: none;
-}
-
-.bus-emoji {
-  font-size: 29px;
-  line-height: 35px;
+.footer {
   text-align: center;
-  width: 35px;
-  height: 35px;
-}
-  .team-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 20px;
+  padding: 35px 20px 50px;
+  color: #777777;
+  font-size: 14px;
 }
 
-.team-gallery img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px;
-  display: block;
-}
+/* MOBILE */
 
 @media (max-width: 600px) {
-  .team-gallery {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+
+  .hero {
+    margin-top: 18px;
   }
 
-  .team-gallery img {
-    height: 130px;
-  }
-}
-  .team-gallery img {
-    height: 130px;
+  .hero-title {
+    font-size: 34px;
   }
 
-  .intro {
-    margin-top: 28px;
-    padding: 0 18px;
+  .hero-subtitle {
+    font-size: 21px;
   }
 
-  .intro-title {
-    margin-bottom: 14px;
+  .stat-value {
+    font-size: 36px;
+  }
+
+  .intro-title,
+  .why-title,
+  .section-title {
+    font-size: 28px;
+  }
+
+  .intro p,
+  .why-section p {
+    font-size: 18px;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
   #map {
-    height: 600px;
-    margin: 28px 16px 0;
-    border-radius: 18px;
-    overflow: hidden;
+    height: 600px !important;
   }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<div class="wrap">
+<div class="page">
 
-  <div class="card">
+<!-- HERO -->
 
-    <header>
-      <h1>🚌 Road to Barcelona</h1>
-      <div class="sub">Livingston → Barcelona · 2,200 km</div>
-    </header>
+<section class="hero">
 
-    <div class="stats">
-
-      <div class="stat">
-        <div class="num" id="raised">£0</div>
-        <div class="label">RAISED</div>
-      </div>
-
-      <div class="stat">
-        <div class="num" id="km">0 km</div>
-        <div class="label">COMPLETED</div>
-      </div>
-
-    </div> 
-
-
-
-</div>
-
-<div class="intro">
-</div>
-
-
-
-</div>
-
-<div class="intro">
+  <div class="hero-title">
+    🚌 Road to Barcelona
   </div>
 
-  <div class="intro">
+  <div class="hero-subtitle">
+    Livingston → Barcelona · 2,200 km
+  </div>
+
+  <div class="stats">
+
+    <div class="stat">
+
+      <div
+        class="stat-value"
+        id="raised"
+      >
+        £0
+      </div>
+
+      <div class="stat-label">
+        RAISED
+      </div>
+
+    </div>
+
+    <div class="stat">
+
+      <div
+        class="stat-value"
+        id="km"
+      >
+        0 km
+      </div>
+
+      <div class="stat-label">
+        COMPLETED
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- INTRO -->
+
+<section class="intro">
 
   <div class="intro-title">
     One club. One journey. One goal. ⚽
   </div>
 
-  <p class="intro-text">
-    </div>
-
-
-
-<div class="intro">
-    Every donation helps us get one step closer to Barcelona and gives more of our boys the opportunity to be part of the journey.
+  <p>
+    Every donation helps us get one step closer to Barcelona
+    and gives more of our boys the opportunity to be part of
+    the journey.
   </p>
 
+</section>
+
+
+<!-- MAP -->
+
+<div id="map"></div>
+
+
+<!-- DONATE -->
+
+<section class="donate-section">
+
+  <div class="donate-title">
+    HELP US GET TO BARCELONA
   </div>
 
-  <div id="map"></div>
-<div class="donate-section" style="margin-top: 30px; margin-left: 24px; margin-right: 24px;">
-  <div class="donate-title">HELP US GET TO BARCELONA</div>
-  <p>Every donation helps us get one step closer to Barcelona.</p>
-  <a class="donate-button" href="https://gofund.me/59dd9a803" target="_blank">
+  <p>
+    Every donation helps us get one step closer to Barcelona.
+  </p>
+
+  <a
+    class="donate-button"
+    href="https://gofund.me/59dd9a803"
+    target="_blank"
+    rel="noopener"
+  >
     SUPPORT THE JOURNEY ⚽
   </a>
-</div>
-  <div class="progress">
 
-    <div class="bar">
-      <div class="fill" id="fill"></div>
-    </div>
+</section>
 
-    <div class="foot">
-      <span id="percent">0%</span>
-      <span id="remaining">2,200 km to Barcelona</span>
-    </div>
+
+<!-- PROGRESS -->
+
+<section class="progress">
+
+  <div class="bar">
+
+    <div
+      class="fill"
+      id="fill"
+    ></div>
 
   </div>
-<section class="why-section"> 
-  
 
-  <h2>A chance to experience the game at another level ⚽️</h2>
+  <div class="progress-info">
+
+    <span id="percent">
+      0%
+    </span>
+
+    <span id="remaining">
+      2,200 km to Barcelona
+    </span>
+
+  </div>
+
+</section>
+
+
+<!-- WHY -->
+
+<section class="why-section">
+
+  <div class="why-title">
+    A chance to experience the game at another level ⚽️
+  </div>
 
   <p>
-    Our 2014 boys have been given the opportunity to experience Barcelona through football,
-    opening up a world of possibilities beyond their own pitch.
+    Our 2014 boys have been given the opportunity to experience
+    Barcelona through football, opening up a world of possibilities
+    beyond their own pitch.
   </p>
 
   <p>
-    They’ll train in Spain, take part in a La Liga training clinic at
-    Espanyol’s training ground, play against Spanish teams and visit one
-    of Barcelona’s iconic football stadiums.
+    They’ll train in Spain, take part in a La Liga training clinic
+    at Espanyol’s training ground, play against Spanish teams and
+    visit one of Barcelona’s iconic football stadiums.
   </p>
 
   <p>
-    For some of the boys, this may be their first time travelling abroad
-    with their teammates. For all of them, it’s an opportunity to
-    experience something completely different, learn, grow and create
-    memories together.
+    For some of the boys, this may be their first time travelling
+    abroad with their teammates. For all of them, it’s an opportunity
+    to experience something completely different, learn, grow and
+    create memories together.
   </p>
 
   <p>
@@ -444,90 +467,127 @@ button {
   </p>
 
   <p>
-    Whether you’re a parent, a football fan, a local business or simply
-    someone who wants to support the boys, your help can make a real difference.
+    Whether you’re a parent, a football fan, a local business or
+    simply someone who wants to support the boys, your help can
+    make a real difference.
   </p>
 
-  <h3>Be a part of the journey to Barcelona 🇪🇸 </h3>
-<section class="team-section">
-  <h2>Meet the team ⚽ </h2>
-
-  <div class="team-gallery">
-  <img src="IMG-20260826-WA0012.jpg" alt="Our team celebrating with the trophy">
-  <img src="IMG-20260826-WA0016.jpg" alt="Our team together">
-  <img src="IMG-20260826-WA0024.jpg" alt="Our team showing their team spirit">
-  <img src="IMG-20260826-WA0009.jpg" alt="Our team">
-  </div>
 </section>
-  <section class="events-section">
 
-  <h2>Fundraising Events ⚽</h2>
 
-  <p class="events-intro">
-    We’re raising funds in fun and exciting ways to help our boys get to Barcelona.
+<!-- TEAM -->
+
+<section class="team-section">
+
+  <div class="section-title">
+    Meet the team ⚽
+  </div>
+
+  <div class="team-grid">
+
+    <img
+      src="IMG-20260826-WA0012.jpg"
+      alt="Our team celebrating with the trophy"
+    >
+
+    <img
+      src="IMG-20260826-WA0016.jpg"
+      alt="Our team together"
+    >
+
+    <img
+      src="IMG-20260826-WA0024.jpg"
+      alt="Our team showing their team spirit"
+    >
+
+    <img
+      src="IMG-20260826-WA0009.jpg"
+      alt="Our team"
+    >
+
+  </div>
+
+</section>
+
+
+<!-- EVENTS -->
+
+<section class="events-section">
+
+  <div class="section-title">
+    Fundraising Events ⚽
+  </div>
+
+  <p>
+    We’re raising funds in fun and exciting ways to help our
+    boys get to Barcelona.
   </p>
 
   <div class="event-card">
-  <img src="./arthurs-seat-2.jpg" alt="Arthur’s Seat Sponsored Walk">
 
-  <div class="event-content">
-    <h3>Arthur’s Seat Sponsored Walk 🏔️</h3>
+    <img
+      src="arthurs-seat-2.jpg"
+      alt="Arthur’s Seat Sponsored Walk"
+    >
 
-    <p>
-      Our first fundraising event will see the boys take on Arthur’s Seat
-      in Edinburgh as a sponsored walk, raising funds towards their journey
-      to Barcelona.
-    </p>
-  </div>
-</div>
+    <div class="event-content">
 
-<p class="events-coming">
-  <strong>More events and challenges are coming! 🎉</strong><br>
-  We’ll keep this page updated with new events and fun ways to support the team.
-</p>
-
-  </section>
-  <details>
-
-    <summary>Admin: update the fundraising total</summary>
-
-    <div class="admin">
-
-      <label for="amount">
-        Current amount raised (£)
-      </label>
-
-      <input
-        id="amount"
-        type="number"
-        min="0"
-        step="1"
-        value="0"
-      >
-
-      <button onclick="updateAmount()">
-        Update map
-      </button>
-
-      <div class="hint">
-        The amount is saved on this device.
+      <div class="event-title">
+        Arthur’s Seat Sponsored Walk 🏔️
       </div>
+
+      <p>
+        Our first fundraising event will see the boys take on
+        Arthur’s Seat in Edinburgh as a sponsored walk, raising
+        funds towards their journey to Barcelona.
+      </p>
+
+      <p>
+        More events and challenges are coming! 🎉
+      </p>
+
+      <p>
+        We’ll keep this page updated with new events and fun
+        ways to support the team.
+      </p>
 
     </div>
 
-  </details>
+  </div>
+
+</section>
+
+
+<div class="footer">
+  Road to Barcelona · Livingston → Barcelona ⚽
+</div>
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 
+<!-- LEAFLET -->
 
-
+<script
+  src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js">
+</script>
 
 
 <script>
-  const TOTAL = 20000;
+
+/* =========================
+   SETTINGS
+========================= */
+
+const TOTAL = 20000;
+const TOTAL_KM = 2200;
+
 let amount = 0;
+
+
+/* =========================
+   CHECKPOINTS
+========================= */
+
 const points = [
 
   {
@@ -644,22 +704,10 @@ const points = [
 
 ];
 
-alert("MAP START");
-/* MAP */
 
-const map = L.map("map", {
-  scrollWheelZoom: false
-});
-
-L.tileLayer(
-  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-  {
-    attribution: "&copy; OpenStreetMap contributors"
-  }
-).addTo(map);
-
-
-/* ROUTE */
+/* =========================
+   ROUTE
+========================= */
 
 const routePoints = [
 
@@ -746,52 +794,71 @@ const routePoints = [
 
   [45.7772, 3.087],
 
-[45.55, 3.00],
-[45.30, 3.02],
-[45.05, 3.05],
-[44.80, 3.08],
-[44.55, 3.10],
-[44.30, 3.12],
-[44.10, 3.08],
+  [45.55, 3.00],
+  [45.30, 3.02],
+  [45.05, 3.05],
+  [44.80, 3.08],
+  [44.55, 3.10],
+  [44.30, 3.12],
+  [44.10, 3.08],
 
-[43.90, 3.25],
-[43.75, 3.50],
-[43.6119, 3.8772],
+  [43.90, 3.25],
+  [43.75, 3.50],
+  [43.6119, 3.8772],
 
-[43.45, 3.65],
-[43.30, 3.35],
-[43.1845, 2.9987],
+  [43.45, 3.65],
+  [43.30, 3.35],
+  [43.1845, 2.9987],
 
-[43.00, 2.95],
-[42.85, 2.92],
-[42.6887, 2.8948],
+  [43.00, 2.95],
+  [42.85, 2.92],
+  [42.6887, 2.8948],
 
-[42.50, 2.88],
-[42.30, 2.86],
-[42.10, 2.84],
-[41.9794, 2.8214],
+  [42.50, 2.88],
+  [42.30, 2.86],
+  [42.10, 2.84],
+  [41.9794, 2.8214],
 
-[41.80, 2.70],
-[41.60, 2.55],
-[41.42, 2.35],
-[41.3874, 2.1686]
+  [41.80, 2.70],
+  [41.60, 2.55],
+  [41.42, 2.35],
+  [41.3874, 2.1686]
 
 ];
+
+
+/* =========================
+   MAP
+========================= */
+
+const map = L.map(
+  "map",
+  {
+    scrollWheelZoom: false
+  }
+);
+
+
+L.tileLayer(
+  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  {
+    attribution:
+      "&copy; OpenStreetMap contributors"
+  }
+).addTo(map);
 
 
 const route = L.polyline(
   routePoints,
   {
+    color: "#f5b800",
     weight: 6,
     opacity: 0.95,
-    color: "#f5b400",
     lineCap: "round",
     lineJoin: "round"
   }
 ).addTo(map);
 
-
-/* FIT MAP */
 
 map.fitBounds(
   route.getBounds(),
@@ -801,152 +868,278 @@ map.fitBounds(
 );
 
 
-/* PINS */
+/* =========================
+   MARKERS
+========================= */
 
 const visibleMarkers = [
-    "Livingston",
-    "Manchester",
-    "Birmingham",
-    "London",
-    "Calais",
-    "Paris",
-    "Montpellier",
-    "Perpignan",
-    "Barcelona"
+
+  "Livingston",
+  "Manchester",
+  "Birmingham",
+  "London",
+  "Calais",
+  "Paris",
+  "Montpellier",
+  "Perpignan",
+  "Barcelona"
+
 ];
 
-points.forEach(function(point) {
 
-    if (!visibleMarkers.includes(point.name)) {
-        return;
+points.forEach(
+  function(point) {
+
+    if (
+      !visibleMarkers.includes(
+        point.name
+      )
+    ) {
+      return;
     }
 
-    const icon = L.divIcon({
-        className: "club-marker",
-        html: '<div class="club-pin"></div>',
-        iconSize: [16, 16],
-        iconAnchor: [8, 8]
-    });
+
+    const icon =
+      L.divIcon({
+
+        className:
+          "club-marker",
+
+        html:
+          '<div style="' +
+          'width:14px;' +
+          'height:14px;' +
+          'border-radius:50%;' +
+          'background:#111;' +
+          'border:3px solid white;' +
+          'box-shadow:0 1px 5px rgba(0,0,0,.35);' +
+          '"></div>',
+
+        iconSize: [
+          16,
+          16
+        ],
+
+        iconAnchor: [
+          8,
+          8
+        ]
+
+      });
+
 
     L.marker(
-        [point.lat, point.lng],
-        { icon: icon }
+      [
+        point.lat,
+        point.lng
+      ],
+      {
+        icon: icon
+      }
     )
     .addTo(map)
     .bindPopup(
-        "<b>" +
-        point.name +
-        "</b><br>" +
-        point.km.toLocaleString() +
-        " km"
+      "<b>" +
+      point.name +
+      "</b><br>" +
+      point.km.toLocaleString() +
+      " km"
     );
-});
-  
-  
 
-
-/* BUS */
-
-const bus = L.marker(
-  routePoints[0],
-  {
-    icon: L.divIcon({
-
-      className: "bus-icon",
-
-      html: '<div style="font-size:30px">🚌</div>',
-
-      iconSize: [35, 35],
-
-      iconAnchor: [17, 17]
-
-    })
   }
-).addTo(map);
+);
 
 
-/* BUS POSITION */
+/* =========================
+   BUS
+========================= */
 
-function positionAtKm(target) {
-    if (target <= 0) {
-        return [
-            points[0].lat,
-            points[0].lng
-        ];
+const busIcon =
+  L.divIcon({
+
+    className:
+      "bus-icon",
+
+    html:
+      '<div style="' +
+      'font-size:30px;' +
+      'line-height:30px;' +
+      '">🚌</div>',
+
+    iconSize: [
+      35,
+      35
+    ],
+
+    iconAnchor: [
+      17,
+      17
+    ]
+
+  });
+
+
+const bus =
+  L.marker(
+    routePoints[0],
+    {
+      icon:
+        busIcon
     }
+  )
+  .addTo(map);
 
-    if (target >= 2200) {
-        const last = points[points.length - 1];
 
-        return [
-            last.lat,
-            last.lng
-        ];
-    }
+/* =========================
+   BUS POSITION
+========================= */
 
-    for (
-        let i = 1;
-        i < points.length;
-        i++
+function positionAtKm(
+  target
+) {
+
+  if (
+    target <= 0
+  ) {
+
+    return [
+      points[0].lat,
+      points[0].lng
+    ];
+
+  }
+
+
+  if (
+    target >= TOTAL_KM
+  ) {
+
+    const last =
+      points[
+        points.length - 1
+      ];
+
+    return [
+      last.lat,
+      last.lng
+    ];
+
+  }
+
+
+  for (
+    let i = 1;
+    i < points.length;
+    i++
+  ) {
+
+    if (
+      target <= points[i].km
     ) {
-        if (target <= points[i].km) {
 
-            const a = points[i - 1];
-            const b = points[i];
+      const a =
+        points[i - 1];
 
-            const t =
-                (target - a.km) /
-                (b.km - a.km);
+      const b =
+        points[i];
 
-            return [
-                a.lat + (b.lat - a.lat) * t,
-                a.lng + (b.lng - a.lng) * t
-            ];
-        }
+
+      const t =
+        (
+          target - a.km
+        ) /
+        (
+          b.km - a.km
+        );
+
+
+      return [
+
+        a.lat +
+        (
+          b.lat -
+          a.lat
+        ) * t,
+
+        a.lng +
+        (
+          b.lng -
+          a.lng
+        ) * t
+
+      ];
+
     }
 
-    
+  }
 
-  
-  
 
-    
-  
-  
-    
-    
+  const last =
+    points[
+      points.length - 1
+    ];
 
-    
-/* UPDATE SCREEN */
+
+  return [
+    last.lat,
+    last.lng
+  ];
+
+}
+
+
+/* =========================
+   UPDATE SCREEN
+========================= */
 
 function updateUI() {
 
-  amount = Math.max(
-    0,
-    Math.min(
-      TOTAL,
-      Number(amount) || 0
-    )
-  );
+  amount =
+    Math.max(
+      0,
+      Math.min(
+        TOTAL,
+        Number(amount) || 0
+      )
+    );
 
 
   const pct =
-    (amount / TOTAL) * 100;
-const travelledKm = (amount / TOTAL) * 2200;
-const remainingKm = 2200 - travelledKm;
+    (
+      amount /
+      TOTAL
+    ) * 100;
+
+
+  const travelledKm =
+    (
+      amount /
+      TOTAL
+    ) * TOTAL_KM;
+
+
+  const remainingKm =
+    TOTAL_KM -
+    travelledKm;
+
 
   document.getElementById(
     "raised"
   ).textContent =
     "£" +
-    Math.round(amount).toLocaleString()
+    Math.round(
+      amount
+    ).toLocaleString();
 
 
   document.getElementById(
-  "km"
-).textContent =
-  Math.round(travelledKm).toLocaleString() +
-  " km";
+    "km"
+  ).textContent =
+    Math.round(
+      travelledKm
+    ).toLocaleString() +
+    " km";
+
 
   document.getElementById(
     "fill"
@@ -957,55 +1150,104 @@ const remainingKm = 2200 - travelledKm;
   document.getElementById(
     "percent"
   ).textContent =
-    pct.toFixed(1) + "%";
+    pct.toFixed(1) +
+    "%";
 
 
   document.getElementById(
     "remaining"
-).textContent =
-    amount >= TOTAL
-        ? "🎉 Barcelona reached!"
-        : Math.round(remainingKm).toLocaleString() +
-          " km to Barcelona";
+  ).textContent =
 
-bus.setLatLng(
-    positionAtKm(travelledKm)
+    amount >= TOTAL
+
+      ? "🎉 Barcelona reached!"
+
+      : Math.round(
+          remainingKm
+        ).toLocaleString() +
+        " km to Barcelona";
+
+
+  bus.setLatLng(
+    positionAtKm(
+      travelledKm
+    )
+  );
+
+}
+
+
+/* =========================
+   LOAD AMOUNT
+========================= */
+
+fetch(
+  "amount.json?cache=" +
+  Date.now()
+)
+
+.then(
+  function(response) {
+
+    if (
+      !response.ok
+    ) {
+      throw new Error(
+        "Could not load amount.json"
+      );
+    }
+
+    return response.json();
+
+  }
+)
+
+.then(
+  function(data) {
+
+    amount =
+      Number(
+        data.amount
+      ) || 0;
+
+    updateUI();
+
+  }
+)
+
+.catch(
+  function() {
+
+    amount = 0;
+
+    updateUI();
+
+  }
 );
 
 
-}
-
-
-/* ADMIN BUTTON */
-
-function updateAmount() {
-
-  amount = 
-    Number(
-      document.getElementById(
-        "amount"
-      ).value
-    ) || 0;
-
-
-  
-
-
-  updateUI();
-
-}
-
-
-/* START */
-
-document.getElementById(
-  "amount"
-).value = amount;
-
+/* =========================
+   INITIAL UPDATE
+========================= */
 
 updateUI();
+
+
+/* =========================
+   FIX MOBILE MAP SIZE
+========================= */
+
+setTimeout(
+  function() {
+
+    map.invalidateSize();
+
+  },
+  300
+);
 
 </script>
 
 </body>
+
 </html>
