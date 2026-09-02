@@ -830,22 +830,21 @@ const routePoints = [
 /* =========================
    MAP
 ========================= */
+/* MAP */
 
-const map = L.map(
-  "map",
+const map = L.map("map", {
+  scrollWheelZoom: false
+});
+
+const tiles = L.tileLayer(
+  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
   {
-    scrollWheelZoom: false
+    attribution: "&copy; OpenStreetMap contributors"
   }
 );
 
+tiles.addTo(map);
 
-L.tileLayer(
-  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-  {
-    attribution:
-      "&copy; OpenStreetMap contributors"
-  }
-).addTo(map);
 
 
 const route = L.polyline(
